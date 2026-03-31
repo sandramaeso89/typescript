@@ -1,0 +1,5 @@
+# Dependencias
+node_modules/
+
+# Salida del compilador TypeScript (regenerable con npx tsc)
+dist/
