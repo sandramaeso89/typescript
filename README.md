@@ -6,8 +6,8 @@ Repositorio de la asignatura para la parte de **TypeScript** (Práctica 4). Aqu�
 
 ```text
 typescript/
-├── modulo-1/          # Laboratorio 1 y ejercicios iniciales
-├── modulo-2/          # Siguiente fase (cuando exista)
+├── modulo-1/          # Laboratorio 1
+├── modulo-2/          # Laboratorio 2 (dominio, genéricos, cliente API simulado)
 └── README.md          # Este archivo
 ```
 
@@ -73,6 +73,39 @@ Funciones exportadas para práctica de tipos y estadística básica:
 - **`filtrarAtipicos(valores, limite)`** — elimina valores fuera de las cercas tipo **Tukey** (IQR); vacío → `[]`; si `limite <= 0` no filtra.
 
 Los comentarios en ese archivo están pensados para estudiar el código paso a paso.
+
+## `modulo-2`
+
+Laboratorio 2: modelado de dominio, unión discriminada `EstadoMatricula`, `RespuestaAPI<T>` y cliente de datos genérico con `setTimeout` (simulación asíncrona).
+
+| Qué | Dónde |
+|-----|--------|
+| Tipos de dominio | `modulo-2/src/domain/types/` |
+| Servicio API simulado | `modulo-2/src/services/api-client.ts` |
+| Documentación del modelo | `modulo-2/docs/modelo-datos.md` |
+| Salida compilada | `modulo-2/dist/` (tras `tsc`) |
+
+### Instalación
+
+```bash
+cd modulo-2
+npm install
+```
+
+### Compilar
+
+```bash
+cd modulo-2
+npx tsc
+```
+
+### Contenido principal
+
+- **Interfaces** `Estudiante` y `Asignatura` (IDs `readonly`).
+- **Unión discriminada** `EstadoMatricula` (`ACTIVA` / `SUSPENDIDA` / `FINALIZADA`) y función **`generarReporte(estado)`** con `switch` sobre el discriminante.
+- **`RespuestaAPI<T>`** y **`obtenerRecurso<T>(endpoint)`** → `Promise<RespuestaAPI<T>>` con validaciones básicas de la respuesta.
+
+Detalle de decisiones de diseño: **`docs/modelo-datos.md`**.
 
 ## Licencia y créditos
 
