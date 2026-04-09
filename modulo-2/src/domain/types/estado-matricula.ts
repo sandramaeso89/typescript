@@ -38,8 +38,9 @@ export function generarReporte(estado: EstadoMatricula): string {
 			return `Matrícula suspendida. Motivo: ${estado.motivoSuspension}`;
 		case "FINALIZADA":
 			return `Matrícula finalizada. Nota media: ${estado.notaMedia.toFixed(2)}`;
-		default:
-			// No deberíamos llegar aquí si el switch está completo
-			return analisisExhaustivoMatricula(estado);
+		default: {
+			const comprobacionExhaustiva: never = estado;
+			return analisisExhaustivoMatricula(comprobacionExhaustiva);
+		}
 	}
 }
