@@ -2,12 +2,12 @@
 
 ## Entidades de dominio
 
-Se modelan **Estudiante** y **Asignatura** como **interfaces**. Son la forma estable de objetos en el dominio universitario (identidad con `readonly id`, campos mutables de negocio). Se eligió `interface` frente a `type` para estas entidades porque encajan con el modelo orientado a objetos y pueden extenderse o fusionarse por declaración si el proyecto crece.
+**Estudiante** y **Asignatura** se definen como **interfaces** (modelo de objetos en el dominio universitario). Los identificadores usan **`readonly`**.
 
 ## Estado de matrícula
 
-**EstadoMatricula** es un **type alias** que une tres **interfaces** (`MatriculaActiva`, `MatriculaSuspendida`, `MatriculaFinalizada`). Aquí conviene el **type** para expresar una **unión discriminada**: la propiedad literal `tipo` actúa como discriminante y permite que `generarReporte` use `switch` con comprobación exhaustiva.
+**EstadoMatricula** es un **type** que une tres **interfaces** en una **unión discriminada** por la propiedad literal **`tipo`**.
 
-## Respuestas de red y genéricos
+## Respuestas de red
 
-**`RespuestaAPI<T>`** es una **interface** genérica que parametriza el payload `datos` con `T`. Así el mismo contrato sirve para cualquier recurso (estudiante, asignatura, listas, etc.) sin perder tipado en el cliente: `obtenerRecurso<Estudiante>(...)` devuelve `Promise<RespuestaAPI<Estudiante>>`. Los genéricos abstraen la forma común de las respuestas HTTP mientras el tipo concreto de `datos` cambia según el endpoint.
+La interfaz genérica **`RespuestaAPI<T>`** (definida en `src/services/api-client.ts`, según la teoría) parametriza el payload `datos`. El método **`obtenerRecurso<T>`** devuelve **`Promise<RespuestaAPI<T>>`**, de modo que la forma común de la respuesta HTTP se reutiliza y el tipo de `datos` depende del recurso solicitado.
