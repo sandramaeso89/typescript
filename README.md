@@ -1,6 +1,6 @@
 # typescript
 
-Práctica 4 — repositorio **typescript** (módulos 1 y 2).
+Práctica 4 — repositorio **typescript** (módulos 1 y 2). El **módulo 3 (React)** está en un repositorio aparte: carpeta hermana `react/` en el mismo nivel que este proyecto.
 
 ```text
 typescript/
